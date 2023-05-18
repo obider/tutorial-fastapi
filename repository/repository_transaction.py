@@ -21,3 +21,8 @@ class RepositoryTransaction:
 
     def count_list_transaction(self, match_filter: dict):
         return self.repository.count_documents(match_filter)
+
+    def export_list_transaction(self, match_filter: dict, projection_stage: dict):
+        result = self.repository.find(match_filter, projection_stage)
+        result = list(result)
+        return result

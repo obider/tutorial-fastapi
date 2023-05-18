@@ -20,3 +20,14 @@ class Transaction(BaseModel):
 
     class Config:
         json_encoders = {ObjectId: str, datetime: convert_datetime_str}
+
+    @classmethod
+    def project_export(cls):
+        return {
+            "_id": 0,
+            "Tanggal Transaksi": "$created_time",
+            "Tipe": "$tipe",
+            "Nominal": "$amount",
+            "Catatan": "$notes",
+            "Metode": "$method",
+        }
